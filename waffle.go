@@ -4,13 +4,23 @@ import (
 	lua "github.com/yuin/gopher-lua"
 )
 
-type Waffle struct {
+func Preload(ls *lua.LState) {
+	ls.PreloadModule("waffle", func(l *lua.LState) int {
+		ls.Push(ls.SetFuncs(ls.NewTable(), exports))
+
+		return 1
+	})
 }
 
-func New() *Waffle {
-	return &Waffle{}
-}
+var exports = map[string]lua.LGFunction{
+	"version": func(ls *lua.LState) int {
+		ls.Push(lua.LString(Version))
 
-func (w *Waffle) init() {
-	lua.NewState()
+		return 1
+	},
+	"date": func(ls *lua.LState) int {
+		ls.Push(lua.LString(Date))
+
+		return 1
+	},
 }
