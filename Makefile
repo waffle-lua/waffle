@@ -7,10 +7,10 @@ BUILD_OUTPUT := cmd/waffle/waffle
 
 build: ## builds waffle
 	@go build -v -trimpath \
-		-ldflags="-X 'bits.chrsm.org/waffle.Date=$(DATE)' \
-		-X 'bits.chrsm.org/waffle.Version=$(COMMIT)'" \
+		-ldflags="-X 'github.com/waffle-lua/waffle.Date=$(DATE)' \
+		-X 'github.com/waffle-lua/waffle.Version=$(COMMIT)'" \
 		-o $(BUILD_OUTPUT) \
-		bits.chrsm.org/waffle/cmd/waffle
+		github.com/waffle-lua/waffle/cmd/waffle
 
 lint:
 	@golangci-lint run && echo "OK"

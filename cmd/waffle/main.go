@@ -10,7 +10,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"bits.chrsm.org/waffle"
+	"github.com/waffle-lua/waffle"
 
 	lua "github.com/yuin/gopher-lua"
 

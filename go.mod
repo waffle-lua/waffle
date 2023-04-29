@@ -1,4 +1,4 @@
-module bits.chrsm.org/waffle
+module github.com/waffle-lua/waffle
 
 go 1.20
 
