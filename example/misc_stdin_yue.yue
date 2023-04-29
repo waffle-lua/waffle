@@ -1,0 +1,20 @@
+#!/usr/bin/env -S bash -c 'yue -p $0 | waffle -stdin'
+
+import 'http' as http
+import 'json' as json
+import 'waffle' as waf
+
+print waf.version!, waf.date!
+
+r = http.request 'POST', 'https://httpbin.org/post?xyz', json.encode
+  a: 'b'
+  b: 'c'
+  d: {}
+
+client = http.client { timeout: 30 }
+
+resp, err = client\do_request r
+if err then
+  error err
+
+print resp.body
