@@ -9,6 +9,7 @@ build: ## builds waffle
 	@go build -v -trimpath \
 		-ldflags="-X 'github.com/waffle-lua/waffle.Date=$(DATE)' \
 		-X 'github.com/waffle-lua/waffle.Version=$(COMMIT)'" \
+		-tags sqlite \
 		-o $(BUILD_OUTPUT) \
 		github.com/waffle-lua/waffle/cmd/waffle
 

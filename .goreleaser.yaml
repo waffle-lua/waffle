@@ -3,19 +3,34 @@ before:
     - go mod tidy
     - go generate ./...
 builds:
-  - env:
-      - CGO_ENABLED=0
-    goos:
+  - goos:
       - linux
-      - windows
       - darwin
+      - windows
     goarch:
       - amd64
     main: ./cmd/waffle
     flags:
       - -v
+    tags:
+      - sqlite
     ldflags:
       - -s -w -X 'bits.chrsm.org/waffle.Version={{.Version}}' -X 'bits.chrsm.org/waffle.Date={{.Date}}'
+
+    overrides:
+      - goos: windows
+        env:
+          - CGO_ENABLED=0
+        goarch: amd64
+        goamd64: v1
+        goarm: ''
+        gomips: ''
+        flags:
+          - -v
+        ldflags:
+          - -s -w -X 'bits.chrsm.org/waffle.Version={{.Version}}' -X 'bits.chrsm.org/waffle.Date={{.Date}}'
+        tags:
+          - windows
 
 release:
   github:
